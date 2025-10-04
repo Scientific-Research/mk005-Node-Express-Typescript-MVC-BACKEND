@@ -21,3 +21,10 @@ export const getApiDocumentationHtml = () => {
 export const getJobs = () => {
   return jobs;
 };
+
+export const getTodos = () => {
+  const todos = jobs.map((job) => {
+    return { todo: job.todo, company: job.company, title: job.title };
+  });
+  return todos;
+};

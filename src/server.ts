@@ -6,7 +6,7 @@ import express from 'express';
 import cors from 'cors';
 // import { IncomingMessage, ServerResponse } from 'http';
 // import { generateMainContent } from './content';
-import { getApiDocumentationHtml, getJobs } from './model';
+import { getApiDocumentationHtml, getJobs, getTodos } from './model';
 
 const app = express();
 app.use(cors()); // erlaubt alle Origins
@@ -35,10 +35,6 @@ const port = 8000;
 //   })
 //   .listen(port);
 
-// const todos = jobs.map((job) => {
-//   return { todo: job.todo, company: job.company, title: job.title };
-// });
-
 // using express
 app.get('/', (req: express.Request, res: express.Response) => {
   // res.send(
@@ -57,6 +53,8 @@ app.get('/jobs', (req: express.Request, res: express.Response) => {
 
 app.get('/todos', (req: express.Request, res: express.Response) => {
   // res.send(todos);
+
+  res.send(getTodos());
 });
 
 app.listen(port, () => {
