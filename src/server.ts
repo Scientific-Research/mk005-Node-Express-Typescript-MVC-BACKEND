@@ -34,6 +34,10 @@ console.log(jobs);
 //   })
 //   .listen(port);
 
+const todos = jobs.map((job) => {
+  return { todo: job.todo, company: job.company, title: job.title };
+});
+
 // using express
 app.get('/', (req: express.Request, res: express.Response) => {
   res.send(
@@ -44,6 +48,10 @@ app.get('/', (req: express.Request, res: express.Response) => {
 app.get('/jobs', (req: express.Request, res: express.Response) => {
   res.send(jobs); // showing the jobs on the browser or test.rest or Postmann => http://localhost:8000/jobs
   // res.json(jobs);
+});
+
+app.get('/todos', (req: express.Request, res: express.Response) => {
+  res.send(todos);
 });
 
 app.listen(port, () => {
