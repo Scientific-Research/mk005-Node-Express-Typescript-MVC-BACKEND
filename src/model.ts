@@ -1,6 +1,7 @@
 import fs from 'fs';
 
 import jobs from './data/jobs.json';
+import skillInfos from './data/skillInfos.json';
 
 interface IJobs {
   id: number;
@@ -10,6 +11,12 @@ interface IJobs {
   description: string;
   skillList: string;
   todo: string;
+}
+
+interface ISkillInfos {
+  name: string;
+  url: string;
+  description: string;
 }
 
 export const getApiDocumentationHtml = () => {
