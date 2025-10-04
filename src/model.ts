@@ -1,5 +1,6 @@
-import jobs from './data/jobs.json';
 import fs from 'fs';
+
+import jobs from './data/jobs.json';
 
 interface IJobs {
   id: number;
@@ -18,5 +19,5 @@ export const getApiDocumentationHtml = () => {
 };
 
 export const getJobs = () => {
-  return [];
+  return jobs;
 };
