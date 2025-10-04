@@ -3,22 +3,10 @@
 
 // import http from 'http';
 import express from 'express';
-import fs from 'fs';
 import cors from 'cors';
 // import { IncomingMessage, ServerResponse } from 'http';
 // import { generateMainContent } from './content';
-import jobs from './data/jobs.json';
-import { getApiDocumentationHtml } from './model';
-
-interface IJobs {
-  id: number;
-  title: string;
-  company: string;
-  url: string;
-  description: string;
-  skillList: string;
-  todo: string;
-}
+import { getApiDocumentationHtml, getJobs } from './model';
 
 const app = express();
 app.use(cors()); // erlaubt alle Origins
@@ -33,7 +21,7 @@ const port = 8000;
 // const jobs: IJobs[] = JSON.parse(
 //   fs.readFileSync('./src/data/jobs.json', 'utf-8')
 // ); // in JS Object format => we can use it
-console.log(jobs);
+// console.log(jobs);
 
 // using http.createServer
 // http
@@ -47,9 +35,9 @@ console.log(jobs);
 //   })
 //   .listen(port);
 
-const todos = jobs.map((job) => {
-  return { todo: job.todo, company: job.company, title: job.title };
-});
+// const todos = jobs.map((job) => {
+//   return { todo: job.todo, company: job.company, title: job.title };
+// });
 
 // using express
 app.get('/', (req: express.Request, res: express.Response) => {
@@ -61,12 +49,14 @@ app.get('/', (req: express.Request, res: express.Response) => {
 });
 
 app.get('/jobs', (req: express.Request, res: express.Response) => {
-  res.send(jobs); // showing the jobs on the browser or test.rest or Postmann => http://localhost:8000/jobs
+  // res.send(jobs); // showing the jobs on the browser or test.rest or Postmann => http://localhost:8000/jobs
   // res.json(jobs);
+
+  res.send(getJobs());
 });
 
 app.get('/todos', (req: express.Request, res: express.Response) => {
-  res.send(todos);
+  // res.send(todos);
 });
 
 app.listen(port, () => {
