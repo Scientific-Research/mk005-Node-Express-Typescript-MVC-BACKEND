@@ -8,6 +8,7 @@ import cors from 'cors';
 // import { IncomingMessage, ServerResponse } from 'http';
 // import { generateMainContent } from './content';
 import jobs from './data/jobs.json';
+import { getApiDocumentationHtml } from './model';
 
 interface IJobs {
   id: number;
@@ -52,9 +53,11 @@ const todos = jobs.map((job) => {
 
 // using express
 app.get('/', (req: express.Request, res: express.Response) => {
-  res.send(
-    'Job Site API. To see the complete list of Jobs, add "/jobs" at the END of URL => http://localhost:8000/jobs'
-  );
+  // res.send(
+  //   'Job Site API. To see the complete list of Jobs, add "/jobs" at the END of URL => http://localhost:8000/jobs'
+  // );
+
+  res.send(getApiDocumentationHtml());
 });
 
 app.get('/jobs', (req: express.Request, res: express.Response) => {
