@@ -1,20 +1,24 @@
 [
   {
+    "idCode": "angular",
     "name": "Angular",
     "url": "https://onespace.pages.dev/techItems?id=36",
     "description": "together with React and Vue.js one of the three most popular JavaScript frameworks"
   },
   {
+    "idCode": "react",
     "name": "React",
     "url": "https://onespace.pages.dev/techItems?id=36",
     "description": "together with React and Vue.js one of the three most popular JavaScript frameworks"
   },
   {
+    "idCode": "cicd",
     "name": "CI/CD",
     "url": "https://onespace.pages.dev/techItems?id=36",
     "description": "together with React and Vue.js one of the three most popular JavaScript frameworks"
   },
   {
+    "idCode": "typescript",
     "name": "Typescript",
     "url": "https://onespace.pages.dev/techItems?id=36",
     "description": "together with React and Vue.js one of the three most popular JavaScript frameworks"

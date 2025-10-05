@@ -2,7 +2,7 @@ import fs from 'fs';
 
 import rawJobs from './data/jobs.json';
 import skillInfos from './data/skillInfos.json';
-import { IJobs, IRawJob, ISkillInfos } from './interface';
+import { IJobs, IRawJob, ISkillInfos, nullObjectSkill } from './interface';
 
 export const getApiDocumentationHtml = () => {
   return `<h1>GET A JOB API</h1> <ul>
@@ -24,12 +24,20 @@ export const getJobs = () => {
 };
 
 export const buildSkills = (skillList: string) => {
-  const Skills: ISkillInfos[] = [];
   const skillIdCodes = skillList.split(',').map((s) => s.trim());
   console.log(skillIdCodes);
+
+  const skills: ISkillInfos[] = [];
+  skillIdCodes.forEach((skillIdCode) => {
+    const skill: ISkillInfos = {
+      ...nullObjectSkill,
+      idCode: skillIdCode,
+    };
+    skills.push(skill);
+  });
   // console.log(skillList);
   // return [];
-  return Skills;
+  return skills;
 };
 
 export const getTodos = () => {
