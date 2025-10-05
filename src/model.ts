@@ -1,12 +1,23 @@
 import fs from 'fs';
 
-import _jobs from './data/jobs.json';
+import rawJobs from './data/jobs.json';
 import skillInfos from './data/skillInfos.json';
 
 interface ISkillInfos {
   name: string;
   url: string;
   description: string;
+}
+
+interface IRawJob {
+  id: number;
+  title: string;
+  company: string;
+  url: string;
+  description: string;
+  skillList: string;
+  // skills: ISkillInfos[];
+  todo: string;
 }
 
 interface IJobs {
@@ -28,18 +39,23 @@ export const getApiDocumentationHtml = () => {
 
 export const getJobs = () => {
   const jobs: IJobs[] = [];
-  _jobs.forEach((_job) => {
-    const job = {
-      ..._job,
-      skills: [],
+  rawJobs.forEach((rawJob: IRawJob) => {
+    const job: IJobs = {
+      ...rawJob,
+      // skills: [],
+      skills: buildSkills(rawJob.skillList),
     };
     jobs.push(job);
   });
   return jobs;
 };
 
+export const buildSkills = (skillList: string) => {
+  return [];
+};
+
 export const getTodos = () => {
-  const todos = _jobs.map((job) => {
+  const todos = rawJobs.map((job) => {
     return { todo: job.todo, company: job.company, title: job.title };
   });
   return todos;
