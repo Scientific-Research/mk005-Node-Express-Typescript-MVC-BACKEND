@@ -29,16 +29,22 @@ export const buildSkills = (skillList: string) => {
 
   const skills: ISkillInfos[] = [];
   skillIdCodes.forEach((skillIdCode, i) => {
-    // const _skillIdCode = skillIdCodes[i];
+    // First Solution:
+    const _skillIdCode = skillIdCodes[i];
     // console.log(_skillIdCode); //'angular','cicd','testing','hotjar','piwik',...
 
-    // console.log(i); 0,1,2,3,...
-
     const skill = skillInfos.find(
-      // (info: ISkillInfos) => info.idCode === _skillIdCode
-      (info: ISkillInfos) => info.idCode === skillIdCode
+      (info: ISkillInfos) => info.idCode === _skillIdCode
+      // (info: ISkillInfos) => info.idCode === skillIdCode
     );
-    /* _skill : {
+
+    // Second Solution:
+    // const skill = skillInfos.find(
+    //   // (info: ISkillInfos) => info.idCode === _skillIdCode
+    //   (info: ISkillInfos) => info.idCode === skillIdCode
+    // );
+
+    /* skill : {
           idCode: 'angular',
           name: 'Angular',
           url: 'https://onespace.pages.dev/techItems?id=36',
