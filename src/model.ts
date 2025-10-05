@@ -25,14 +25,28 @@ export const getJobs = () => {
 
 export const buildSkills = (skillList: string) => {
   const skillIdCodes = skillList.split(',').map((s) => s.trim());
-  console.log(skillIdCodes);
+  // console.log(skillIdCodes);
 
   const skills: ISkillInfos[] = [];
   skillIdCodes.forEach((skillIdCode) => {
-    const skill: ISkillInfos = {
-      ...nullObjectSkill,
-      idCode: skillIdCode,
-    };
+    // const _skill = skillIdCodes.indexOf(skillIdCode);
+    const _skill = skillInfos.find(
+      (info: ISkillInfos) => info.idCode === skillIdCode
+    );
+    console.log(_skill);
+
+    let skill: ISkillInfos;
+    if (_skill === undefined) {
+      skill = {
+        ...nullObjectSkill,
+        idCode: skillIdCode,
+      };
+    } else {
+      skill = {
+        ..._skill,
+        idCode: skillIdCode,
+      };
+    }
     skills.push(skill);
   });
   // console.log(skillList);
