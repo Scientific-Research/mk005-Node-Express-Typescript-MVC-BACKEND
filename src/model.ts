@@ -2,34 +2,7 @@ import fs from 'fs';
 
 import rawJobs from './data/jobs.json';
 import skillInfos from './data/skillInfos.json';
-
-interface ISkillInfos {
-  name: string;
-  url: string;
-  description: string;
-}
-
-interface IRawJob {
-  id: number;
-  title: string;
-  company: string;
-  url: string;
-  description: string;
-  skillList: string;
-  // skills: ISkillInfos[];
-  todo: string;
-}
-
-interface IJobs {
-  id: number;
-  title: string;
-  company: string;
-  url: string;
-  description: string;
-  skillList: string;
-  skills: ISkillInfos[];
-  todo: string;
-}
+import { IJobs, IRawJob } from './interface';
 
 export const getApiDocumentationHtml = () => {
   return `<h1>GET A JOB API</h1> <ul>
