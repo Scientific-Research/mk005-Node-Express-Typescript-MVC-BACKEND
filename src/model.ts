@@ -33,21 +33,33 @@ export const buildSkills = (skillList: string) => {
     const _skill = skillInfos.find(
       (info: ISkillInfos) => info.idCode === skillIdCode
     );
+
     console.log(_skill);
+    /* _skill : {
+          idCode: 'angular',
+          name: 'Angular',
+          url: 'https://onespace.pages.dev/techItems?id=36',
+          description: 'together with React and Vue.js one of the three most popular JavaScript frameworks'
+      } */
 
     let skill: ISkillInfos;
-    if (_skill === undefined) {
-      skill = {
-        ...nullObjectSkill,
-        idCode: skillIdCode,
-      };
-    } else {
+    if (_skill !== undefined) {
+      // skill = {
+      //   // ...nullObjectSkill,
+      //   // idCode: skillIdCode,
+      // };
       skill = {
         ..._skill,
-        idCode: skillIdCode,
+        // idCode: skillIdCode,
       };
+      skills.push(skill);
     }
-    skills.push(skill);
+    // else {
+    //   // skill = {
+    //   //   ..._skill,
+    //   //   // idCode: skillIdCode,
+    //   // };
+    // }
   });
   // console.log(skillList);
   // return [];
