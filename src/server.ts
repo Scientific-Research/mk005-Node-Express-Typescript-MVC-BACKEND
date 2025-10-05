@@ -7,7 +7,7 @@ import cors from 'cors';
 // import { IncomingMessage, ServerResponse } from 'http';
 // import { generateMainContent } from './content';
 import {
-  getApiDocumentationHtml,
+  getApiInstructionsHtml,
   getJobs,
   getTodos,
   getTotaledSkills,
@@ -46,7 +46,7 @@ app.get('/', (req: express.Request, res: express.Response) => {
   //   'Job Site API. To see the complete list of Jobs, add "/jobs" at the END of URL => http://localhost:8000/jobs'
   // );
 
-  res.send(getApiDocumentationHtml());
+  res.send(getApiInstructionsHtml());
 });
 
 app.get('/jobs', (req: express.Request, res: express.Response) => {
