@@ -25,16 +25,19 @@ export const getJobs = () => {
 
 export const buildSkills = (skillList: string) => {
   const skillIdCodes = skillList.split(',').map((s) => s.trim());
-  // console.log(skillIdCodes);
+  // console.log(skillIdCodes); ["angular", "cicd", "testing", "hotjar", "piwik"]
 
   const skills: ISkillInfos[] = [];
-  skillIdCodes.forEach((skillIdCode) => {
-    // const _skill = skillIdCodes.indexOf(skillIdCode);
-    const _skill = skillInfos.find(
+  skillIdCodes.forEach((skillIdCode, i) => {
+    // const _skillIdCode = skillIdCodes[i];
+    // console.log(_skillIdCode); //'angular','cicd','testing','hotjar','piwik',...
+
+    // console.log(i); 0,1,2,3,...
+
+    const skill = skillInfos.find(
+      // (info: ISkillInfos) => info.idCode === _skillIdCode
       (info: ISkillInfos) => info.idCode === skillIdCode
     );
-
-    console.log(_skill);
     /* _skill : {
           idCode: 'angular',
           name: 'Angular',
@@ -42,17 +45,19 @@ export const buildSkills = (skillList: string) => {
           description: 'together with React and Vue.js one of the three most popular JavaScript frameworks'
       } */
 
-    let skill: ISkillInfos;
-    if (_skill !== undefined) {
+    // let skill: ISkillInfos;
+    // if (_skill !== undefined) {
+    if (skill) {
       // skill = {
       //   // ...nullObjectSkill,
       //   // idCode: skillIdCode,
       // };
-      skill = {
-        ..._skill,
-        // idCode: skillIdCode,
-      };
+      // skill = {
+      //   ..._skill,
+      //   // idCode: skillIdCode,
+      // };
       skills.push(skill);
+      // skills.push(_skill);
     }
     // else {
     //   // skill = {
