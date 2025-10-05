@@ -33,3 +33,8 @@ export interface IJobs {
   skills: ISkillInfos[];
   todo: string;
 }
+
+export interface TotaledSkill {
+  skill: ISkillInfos;
+  total: number;
+}

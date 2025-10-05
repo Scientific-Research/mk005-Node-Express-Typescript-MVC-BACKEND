@@ -6,7 +6,12 @@ import express from 'express';
 import cors from 'cors';
 // import { IncomingMessage, ServerResponse } from 'http';
 // import { generateMainContent } from './content';
-import { getApiDocumentationHtml, getJobs, getTodos } from './model';
+import {
+  getApiDocumentationHtml,
+  getJobs,
+  getTodos,
+  getTotaledSkills,
+} from './model';
 
 const app = express();
 app.use(cors()); // erlaubt alle Origins
@@ -55,6 +60,10 @@ app.get('/todos', (req: express.Request, res: express.Response) => {
   // res.send(todos);
 
   res.send(getTodos());
+});
+
+app.get('/totaledSkills', (req: express.Request, res: express.Response) => {
+  res.json(getTotaledSkills());
 });
 
 app.listen(port, () => {

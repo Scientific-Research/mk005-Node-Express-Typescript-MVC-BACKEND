@@ -2,12 +2,35 @@ import fs from 'fs';
 
 import rawJobs from './data/jobs.json';
 import skillInfos from './data/skillInfos.json';
-import { IJobs, IRawJob, ISkillInfos, nullObjectSkill } from './interface';
+import {
+  IJobs,
+  IRawJob,
+  ISkillInfos,
+  nullObjectSkill,
+  TotaledSkill,
+} from './interface';
 
 export const getApiDocumentationHtml = () => {
   return `<h1>GET A JOB API</h1> <ul>
   <li><a href="/jobs">/jobs</a>- returns an array of job objects</li>
   </ul>`;
+};
+
+export const getApiInstructionsHtml = () => {
+  return `
+<style>
+a, h1 {
+    background-color: #ddd;
+    font-family: courier;
+}
+</style>
+<h1>GETAJOB API</h1>
+<ul>
+    <li><a href="jobs">/jobs</a> - array of job listings will all fields</li>
+    <li><a href="todos">/todos</a> - array of todos with todo/company/title fields</li>
+    <li><a href="totaledSkills">/totaledSkills</a> - array of skills with totals how often they occur in job listings</li>
+</ul>
+    `;
 };
 
 export const getJobs = () => {
@@ -82,4 +105,56 @@ export const getTodos = () => {
     return { todo: job.todo, company: job.company, title: job.title };
   });
   return todos;
+};
+
+export const getTotaledSkills = () => {
+  const totaledSkills: TotaledSkill[] = [];
+  getJobs().forEach((job) => {
+    job.skills.forEach((skill) => {
+      const existingTotaledSkill = totaledSkills.find(
+        (totaledSkill) => totaledSkill.skill.idCode === skill.idCode
+      );
+      if (!existingTotaledSkill) {
+        totaledSkills.push({
+          skill,
+          total: 1,
+        });
+      } else {
+        existingTotaledSkill.total++;
+      }
+    });
+  });
+  return totaledSkills;
+};
+
+export const getSkillsWithList = (skillList: string) => {
+  const skills: ISkillInfos[] = [];
+  const skillIdCodes = skillList.split(',').map((m) => m.trim());
+  skillIdCodes.forEach((skillIdCode) => {
+    const skill: ISkillInfos = lookupSkill(skillIdCode);
+    skills.push(skill);
+  });
+  return skills;
+};
+
+export const lookupSkill = (idCode: string): ISkillInfos => {
+  // const _skill = (skillInfos as ISkillInfos[]).find(
+  //   (info) => info.idCode === idCode
+  // );
+
+  const _skill = (skillInfos as ISkillInfos[]).find(
+    (skill) => skill.idCode === idCode
+  );
+
+  if (_skill === undefined) {
+    return {
+      ...nullObjectSkill,
+      idCode,
+    };
+  } else {
+    return {
+      ..._skill,
+      idCode,
+    };
+  }
 };
