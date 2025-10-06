@@ -102,7 +102,12 @@ export const buildSkills = (skillList: string) => {
 
 export const getTodos = () => {
   const todos = rawJobs.map((job) => {
-    return { todo: job.todo, company: job.company, title: job.title };
+    return {
+      todo: job.todo,
+      company: job.company,
+      title: job.title,
+      url: job.url,
+    };
   });
   return todos;
 };
